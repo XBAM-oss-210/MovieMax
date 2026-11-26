@@ -1,0 +1,17 @@
+import Link from "next/link";
+
+export default function NotFound() {
+    return (
+        <div className="flex min-h-screen flex-col items-center justify-center">
+            <h1 className="text-5xl font-bold">404</h1>
+
+            <p className="mt-4">
+                Cette page n'existe pas.
+            </p>
+
+            <Link href="/" className="mt-6 underline">
+                Retour à l'accueil
+            </Link>
+        </div>
+    );
+}
