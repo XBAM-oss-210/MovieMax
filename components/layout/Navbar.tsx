@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { MOVIE_GENRES } from "@/services/tmdb";
 import Link from "next/link";
 import {
   Menu,
@@ -15,16 +16,9 @@ import {
   Popcorn,
   Home,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const genres = [
-  "Action",
-  "Adventure",
-  "Comedy",
-  "Drama",
-  "Horror",
-  "Science Fiction",
-  "Thriller",
-];
+
 
 const mainLinks = [
   {
@@ -48,6 +42,51 @@ const mainLinks = [
     icon: Heart,
   },
 ];
+
+
+function SearchBar() {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmed = query.trim();
+    if (!trimmed) return;
+
+    router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      role="search"
+      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/4 px-4 py-2.5 transition-all focus-within:border-red-500/50 focus-within:bg-white/6"
+    >
+      <Search size={19} className="shrink-0 text-gray-500" />
+
+      <input
+        type="search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Rechercher un film, une série..."
+        aria-label="Rechercher un film ou une série"
+        maxLength={100}
+        className="min-w-0 flex-1 bg-transparent py-1 text-sm text-white outline-none placeholder:text-gray-600"
+      />
+
+      <button
+        type="submit"
+        disabled={!query.trim()}
+        aria-label="Lancer la recherche"
+        className="flex shrink-0 items-center justify-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-xs font-semibold text-white transition-all hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4"
+      >
+        <Search size={15} />
+        <span className="hidden sm:inline">Rechercher</span>
+      </button>
+    </form>
+  );
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -140,23 +179,21 @@ export default function Navbar() {
               <div className="min-h-0 overflow-hidden">
                 <div className="ml-6 mt-2 space-y-1 border-l border-white/10 pl-4">
 
-                  {genres.map((genre) => (
-                    <Link
-                      key={genre}
-                      href={`/genres/${genre
-                        .toLowerCase()
-                        .replaceAll(" ", "-")}`}
-                      onClick={closeMenu}
-                      className="group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-gray-500 transition-all duration-200 hover:bg-red-500/10 hover:text-red-500"
-                    >
-                      {genre}
+                {MOVIE_GENRES.map((genre) => (
+                  <Link
+                    key={genre.id}
+                    href={`/genres/${genre.slug}`}
+                    onClick={closeMenu}
+                    className="group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-gray-500 transition-all duration-200 hover:bg-red-500/10 hover:text-red-500"
+                  >
+                    {genre.name}
 
-                      <ChevronRight
-                        size={14}
-                        className="opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
-                      />
-                    </Link>
-                  ))}
+                    <ChevronRight
+                      size={14}
+                      className="opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
+                    />
+                  </Link>
+                ))}
 
                 </div>
               </div>
@@ -194,14 +231,7 @@ export default function Navbar() {
 
         {/* Search desktop */}
         <div className="mx-4 hidden w-full max-w-xl sm:block">
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/4 px-4 py-3 transition-all focus-within:border-red-500/50 focus-within:bg-white/6">
-            <Search size={19} className="text-gray-500" />
-            <input
-              type="search"
-              placeholder="Rechercher un film, une série..."
-              className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-600"
-            />
-          </div>
+          <SearchBar />
         </div>
 
         {/* Hamburger mobile */}
@@ -216,19 +246,11 @@ export default function Navbar() {
 
       </header>
 
+
       {/* Search mobile */}
       <div className="fixed inset-x-0 top-20 z-30 border-b border-white/5 bg-[#090909] px-5 py-3 sm:hidden">
-        <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/4 px-4 py-3 transition-all focus-within:border-red-500/50 focus-within:bg-white/6">
-          <Search size={19} className="shrink-0 text-gray-500" />
-
-          <input
-            type="search"
-            placeholder="Rechercher un film, une série..."
-            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-600"
-          />
-        </div>
+        <SearchBar />
       </div>
-
 
 
       {/* DESKTOP SIDEBAR */}

@@ -1,7 +1,25 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    async headers() {
+        return [
+            {
+                source: "/watch/:path*",
+                headers: [
+                    {
+                        key: "Content-Security-Policy",
+                        value: [
+                            "frame-src",
+                            "https://fluxora.sbs",
+                            "https://cinesrc.st",
+                            "https://vidsrc.to",
+                            "https://vidzy.org",
+                        ].join(" "),
+                    },
+                ],
+            },
+        ];
+    },
   experimental: {
     agentFeedback: true,
   },
@@ -15,6 +33,15 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images: {
+    remotePatterns: [
+        {
+            protocol: "https",
+            hostname: "image.tmdb.org",
+            pathname: "/t/p/**",
+        },
+    ],
+    },
 };
 
 export default nextConfig;

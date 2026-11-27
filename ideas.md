@@ -1,23 +1,11 @@
-structure  du site  et aussi les logos  definition des chartes  graphiques -
-
-## ou je vais recuperer les films de facon gratuit ?
-
-
-
-https://heiwastream.fr/embed/movie/1726?lang=vf&autoplay=1 
-https://cinesrc.st/embed/movie/1726
-https://fluxora.sbs/embed/zenix?tmdb=1726&type=movie&lang=vf
-https://vidsrc.to/embed/movie/
-https://vidzy.org/serie/341195/1/1/vf
-
 
 SERVEURS  EN STOCKS 
-
 https://www.2embed.cc/embed/
 https://player.autoembed.me
 https://bingeapi.st/embed/
 
 
+ bloquer  l'ouverture  de onglet 
 
 ## 0. STRUCTURE DES PAGES
     NAVBAR  
@@ -34,14 +22,7 @@ https://bingeapi.st/embed/
             Science Fiction
             Thriller
             
-        [
-        { "id": 28, "name": "Action" },
-        { "id": 12, "name": "Adventure" },
-        { "id": 35, "name": "Comedy" },
-        { "id": 18, "name": "Drama" },
-        { "id": 27, "name": "Horror" },
-        { "id": 53, "name": "Thriller" }
-        ]
+
 
 
 
@@ -55,7 +36,7 @@ https://bingeapi.st/embed/
             - nouveaus   film 
             - Nouveaux series 
             -  bouton   pour une choix aleatoire 
-        FILMS 
+        FILMS
             -  tout les films  se charge que lorsque ca  se montre a ll'image  
             - choix  de categories dans la  page films  
         SERIES 
@@ -77,12 +58,13 @@ https://bingeapi.st/embed/
 ## 1. Fonctionnalités a inclure
 
 - Tu pourrai aussi  aimer 
-- monter  les details du film 
+au  clic  sur un  moviecard 
+     monter  les details du film 
     - detail films (nom -image  - -nombre de seasons si disponible -categorie-description-date de sortie -bande annone -language - ratings -)
     -  au  clic  d'un  film montrer 
         page detail   
             bouton favoris 
-            nombre  de saison  aussi 
+            nombre  de saison  aussi si ca  existe 
             image  en gros  format  qui prend  tout la largeur  
     - bouton regarder 
         -  montre une  page  avec seulement  la  video  et aussi  les  differents  serveurs  
