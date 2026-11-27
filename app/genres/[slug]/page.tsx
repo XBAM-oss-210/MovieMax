@@ -2,7 +2,7 @@
 import { loadGenrePage } from "@/app/action/media";
 import { notFound } from "next/navigation";
 import { Popcorn } from "lucide-react";
-import MediaGrid from "@/components/mediaGrid";
+import MediaGrid from "@/components/MediaGrid";
 import { getGenreBySlug, getMoviesByGenre } from "@/services/tmdb";
 import { Suspense } from "react";
 import Loading from "@/app/loading";

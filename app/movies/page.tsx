@@ -1,5 +1,5 @@
 import { Clapperboard, Flame } from "lucide-react";
-import MediaGrid from "@/components/mediaGrid";
+import MediaGrid from "@/components/MediaGrid";
 import { loadMoviesPage } from "@/app/action/media";
 
 const Movies = async () => {

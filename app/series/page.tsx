@@ -1,5 +1,5 @@
 import { Flame, Tv } from "lucide-react";
-import MediaGrid from "@/components/mediaGrid";
+import MediaGrid from "@/components/MediaGrid";
 import { loadSeriesPage } from "@/app/action/media";
 
 const Series = async () => {
