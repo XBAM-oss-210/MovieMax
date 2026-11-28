@@ -48,6 +48,7 @@ export type MediaDetails = Media & {
     original_language: string;
     genres: Genre[];
     videos: { results: Video[] };
+    seasons?: Season[]; 
 };
 
 export type TMDBResponse<T> = {
@@ -57,6 +58,13 @@ export type TMDBResponse<T> = {
     total_results: number;
 };
 
+export type Season = {
+    id: number;
+    name: string;
+    season_number: number;
+    episode_count: number;
+    air_date: string | null;
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                   Helpers                                  */

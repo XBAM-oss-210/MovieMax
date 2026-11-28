@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import Footer from "@/components/layout/Footer";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,11 @@ const title = "MovieMax – Le cinéma, chez vous";
 const description =
     "Blockbusters, séries addictives et grands classiques : tout le cinéma réuni sur MovieMax. Installez-vous, la séance commence.";
 
+
+// Couleur de la barre du navigateur sur mobile
+export const viewport: Viewport = {
+    themeColor: "#090909",
+}
 
 export const metadata: Metadata = {
     title,
@@ -38,6 +44,11 @@ export const metadata: Metadata = {
         title,
         description,
     },
+    appleWebApp: {
+        capable: true,
+        title: "MovieMax",
+        statusBarStyle: "black",
+    },
 };
 
 export default function RootLayout({
@@ -51,6 +62,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} min-h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-[#090909] text-white">
+            <ServiceWorkerRegister />
             <FavoritesProvider>
               <Navbar />
 

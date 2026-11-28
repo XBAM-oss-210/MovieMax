@@ -48,7 +48,7 @@ function SearchBar() {
   const router = useRouter();
   const [query, setQuery] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmed = query.trim();
